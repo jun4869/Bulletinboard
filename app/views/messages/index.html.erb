@@ -1,0 +1,11 @@
+<h1>Message#index</h1>
+<ul>
+  <% @messages&.each{ |m| %>
+    <li><%= m.body %></li>
+  <% } %>
+</ul>
+
+<%= form_with(model: Message.new, local: true) do |f| %>
+  <%= f.text_area :body, size: '40x5', placeholder: 'Add your commnet' %>
+  <%= f.submit 'submit' %>
+<% end %>
