@@ -1,28 +1,51 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bulletinboard</title>
+    <title>DiaLogBook</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+      .alert:empty {
+        display: none;
+      }
+    </style>
   </head>
 
   <body>
     <header>
-      <nav>
+      <nav class="navbar navbar-dark bg-dark">
         <% if user_signed_in? %>
-          <%= link_to 'logout', destroy_user_session_path, method: :delete %>
+        <div class="btn btn-success">
+          <%= link_to 'home', user_path(current_user.id), class: 'text-white'%>
+        </div>
+        <div class="text-white">
+          <%= current_user.fullname %>
+        </div>
+        <div class="btn btn-danger">
+          <%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'text-white' %>
+        </div>
         <% else %>
-          <%= link_to 'sign up', new_user_registration_path %>
-          <%= link_to 'login', new_user_session_path %>
+        <div class="btn btn-primary">
+        <%= link_to 'sign up', new_user_session_path, class: 'text-white' %>
+        </div>
+        <div class="text-white">
+          DiaLogBook
+        </div>
+        <div class="btn btn-success">
+          <%= link_to 'sign up', new_user_registration_path, class:'text-white' %>
+        </div>
         <% end %>
       </nav>
     </header>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+
+    <div class="alert alert-info" role="alert"><%= notice %></div>
+    <div class="alert alert-warning" role="alert"><%= alert %></div>
+    <div class="content">
+      <%= yield %>
+    </div>
   </body>
 </html>
