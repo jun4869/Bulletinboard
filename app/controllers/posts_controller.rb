@@ -2,10 +2,14 @@ class PostsController < ApplicationController
   def create
     p = post_params
     user = User.find(p[:id])
-    if user.posts.create(body: p[:body], submitter: current_user.id)
-      flash[:notice] = 'Post was successfully created.'
+    if (p[:body] == '')
+      flash[:alert] = 'Null comment is not permitted'
     else
-      flash[:alert] = 'Something went wrong'
+      if user.posts.create(body: p[:body], submitter: current_user.id)
+        flash[:notice] = 'Post was successfully created.'
+      else
+        flash[:alert] = 'Something went wrong'
+      end
     end
 
     redirect_to user_path(user.id)
