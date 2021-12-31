@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     # @students = User.where(role: 'student').order('updated_at desc') if @user.role == 'teacher'
     @posts = Post.where(user_id: @user.id).order('created_at desc')
+    @posts = Kaminari.paginate_array(@posts).page(params[:page])
 
     visit = current_user.visits.find_by(visitee: @user.id)
     if (visit != nil)
