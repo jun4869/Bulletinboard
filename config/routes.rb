@@ -7,4 +7,9 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resources :users, only: [:show]
   resources :posts, only: [:create]
+
+  namespace :api, { format: 'json'} do
+    resources :users, :only => [:show]
+  end
+
 end
