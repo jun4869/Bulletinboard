@@ -11,13 +11,13 @@ class UserDashboard < Administrate::BaseDashboard
     posts: Field::HasMany,
     visits: Field::HasMany,
     id: Field::Number,
-    email: Field::String,
-    encrypted_password: Field::String,
-    reset_password_token: Field::String,
-    reset_password_sent_at: Field::DateTime,
-    remember_created_at: Field::DateTime,
-    created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    # email: Field::String,
+    # encrypted_password: Field::String,
+    # reset_password_token: Field::String,
+    # reset_password_sent_at: Field::DateTime,
+    # remember_created_at: Field::DateTime,
+    # created_at: Field::DateTime,
+    # updated_at: Field::DateTime,
     username: Field::String,
     fullname: Field::String,
     role: Field::String,
@@ -29,25 +29,16 @@ class UserDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-    posts
-    visits
     id
-    email
+    username
+    fullname
+    posts
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
-    posts
-    visits
     id
-    email
-    encrypted_password
-    reset_password_token
-    reset_password_sent_at
-    remember_created_at
-    created_at
-    updated_at
     username
     fullname
     role
@@ -58,14 +49,9 @@ class UserDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
     posts
-    visits
-    email
-    encrypted_password
-    reset_password_token
-    reset_password_sent_at
-    remember_created_at
     username
     fullname
+    password
     role
   ].freeze
 
